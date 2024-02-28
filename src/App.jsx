@@ -13,19 +13,21 @@ function App() {
       const systemChoice = Math.floor(Math.random()*choices.length);
       const sysValue = choices[systemChoice];
       setSysSelection(sysValue);
-      if (userValue === "rock") {
-        if (sysValue === "paper") return false;
-        if (sysValue === "scissor") return true;
-      }
-      if (userValue === "paper") {
-        if (sysValue === "scissor") return false;
-        if (sysValue === "rock") return true;
-      }
-      if (userValue === "scissor") {
-        if (sysValue === "rock") return false;
-        if (sysValue === "paper") return true;
-      }
-      if (userValue === sysValue) return startGame(userValue);
+      // setTimeout(() => {
+        if (userValue === "rock") {
+          if (sysValue === "paper") return false;
+          if (sysValue === "scissor") return true;
+        }
+        if (userValue === "paper") {
+          if (sysValue === "scissor") return false;
+          if (sysValue === "rock") return true;
+        }
+        if (userValue === "scissor") {
+          if (sysValue === "rock") return false;
+          if (sysValue === "paper") return true;
+        }
+        if (userValue === sysValue) return false;
+      // }, 2500);
   } 
   
   const buttonHandler = (value) => {
@@ -33,9 +35,16 @@ function App() {
     setUserSelection(value);
     setSysSelection(null);
     
-    const finalVal = startGame(value);
-    if (finalVal) setResult(result + 1);
-    setIsLoading(false);
+    let sysValue = "";
+    setTimeout(() => {
+      const systemChoice = Math.floor(Math.random()*choices.length);
+      sysValue = choices[systemChoice];
+      setSysSelection(sysValue);
+      if (value === "rock" && sysValue === "scissor") setResult(result + 1);
+      if (value === "paper" && sysValue === "rock") setResult(result + 1);
+      if (value === "scissor" && sysValue === "paper") setResult(result + 1);
+      setIsLoading(false);
+    }, 1500);
   }
 
   return (
