@@ -1,3 +1,3 @@
-# Rock Paper Scissors Game usign React
+# Rock Paper Scissors Game using React
 
 ![result](screenshot/result.png)
